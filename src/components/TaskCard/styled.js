@@ -4,7 +4,7 @@ export const TaskCard = styled.div`
 		cursor: pointer;
 		width: 302px;
 		height: 48px;
-		background-color: ${props => props.isDesabled ? '#FFFFFF' : '#B2EBEF'};
+		background-color: #FFFFFF;
 		border: 1px solid ${props => props.isDesabled ? '#9E9E9E' : '#B2EBEF'} ;
 		box-sizing: border-box;
 		padding: 10px;
@@ -16,13 +16,13 @@ export const TaskCard = styled.div`
 `;
 
 export const TaskCardInput	= styled.input`
-		width: 200px;
+		width: ${ props => props.isDesabled ? '200px' : '265px'};
 		height: 100%;
 		padding: 5px;
 		border: 1px solid transparent;
 		font-size: 15px;
 		outline: transparent;
-		background-color: ${props => props.isDesabled ? '#FFFFFF' : '#B2EBEF'};;
+		background-color: transparent;
 		
 		&:disabled {
 				color: black;

@@ -2,16 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { TaskCard, TaskCardInput, TaskCardIcons, DeleteTask, EditTask } from './styled';
 import { IconEdit, IconPlus} from '../../lib/icons';
 
-const Component = ({title = 'Do something'}) => {
+const Component = ({title = 'Do something', removeTask, index}) => {
 		const [isDesabled, setIsDesabled] = useState(true);
 		const ref = useRef(null);
 
-
-		const surprise = () => {
-				alert('Deleting task');
-		}
-
-		const disableEdit = () => {
+		const changeDesable = () => {
 				setIsDesabled(!isDesabled);
 		}
 
@@ -19,21 +14,52 @@ const Component = ({title = 'Do something'}) => {
 				if (!isDesabled) {
 						ref.current.focus();
 				}
+				console.log(isDesabled)
 		})
+
+		const stopEditFocus = () => {
+				setIsDesabled(true);
+		}
+
+		const handleInputTask = (event) => {
+				console.log(event.target.value);
+		}
+
+		const keyPressEnter = (e) => {
+				if(e.keyCode === 13){
+						alert( e.target.value);
+				}
+		}
+
+		function showDeleteButton () {
+				if (isDesabled) {
+						return (
+								<TaskCardIcons>
+										<DeleteTask onClick={() => removeTask(index)}>
+												<IconPlus title={'Delete task'}/>
+										</DeleteTask>
+										<EditTask onClick={changeDesable} disabled={!isDesabled} >
+												<IconEdit title={'Edit task'}/>
+										</EditTask>
+								</TaskCardIcons>
+						)
+				}
+		}
 
 		return (
 				<TaskCard  isDesabled={isDesabled}>
 						<div>
-								<TaskCardInput ref={ref} defaultValue={title} disabled={isDesabled}/>
+								<TaskCardInput
+										ref={ref}
+										defaultValue={title}
+										disabled={isDesabled}
+										onBlur={stopEditFocus}
+										onChange={handleInputTask}
+										onKeyDown={keyPressEnter}
+										isDesabled={isDesabled}
+								/>
 						</div>
-						<TaskCardIcons>
-								<DeleteTask onClick={surprise}>
-										<IconPlus title={'Delete task'}/>
-								</DeleteTask>
-							<EditTask onClick={disableEdit}>
-									<IconEdit title={'Edit task'}/>
-							</EditTask>
-						</TaskCardIcons>
+						{showDeleteButton()}
 				</TaskCard>
 		)
 }
