@@ -4,10 +4,10 @@ import { IconPlus} from '../../lib/icons';
 import { TaskCard } from '../TaskCard';
 
 const Component = ({colorList, numberList, titleList}) => {
-		const [numberOfTasks, setNumberOfTasks] = useState(numberList)
+		const [numberOfTasks, setNumberOfTasks] = useState(numberList);
 
 		const addTask = () => {
-				setNumberOfTasks([...numberOfTasks, 'New task'])
+				setNumberOfTasks([...numberOfTasks, 'New task']);
 		}
 
 		const removeItem = (index) => {
@@ -24,14 +24,14 @@ const Component = ({colorList, numberList, titleList}) => {
 					</ListCardHeader>
 					<TaskCards>
 							{
-									numberOfTasks.map((cardTitle, index) => {
-											return <TaskCard
-													       title={cardTitle}
-													       key={`card-${index}`}
-													       removeTask={removeItem}
-													       index={index}
-																			/>
-									})
+								numberOfTasks.map((cardTitle, index) => {
+										return <TaskCard
+												       title={cardTitle}
+												       key={`card-${index}`}
+												       removeTask={removeItem}
+												       index={index}
+										/>
+								})
 							}
 					</TaskCards>
 			</ListCard>

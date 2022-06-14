@@ -1,9 +1,8 @@
-import { Button as Component } from '../../components'
+import { CustomInput as Component } from '../../components'
 import { TemplateStyled } from "../../utils/index";
-import {theme} from '../../style/theme';
 
 export default {
-		title: "Components/Button",
+		title: "Components/CustomInput",
 		component: Component,
 		decorators: [TemplateStyled],
 }
@@ -12,5 +11,7 @@ const Template = args => <Component {...args} />
 export const Primary = Template.bind({})
 
 Primary.args = {
-		text: "New message"
+		placeholder: 'New placeholder message',
+		labelInput: 'New label text',
+		inputType: 'text'
 }

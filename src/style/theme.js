@@ -40,6 +40,7 @@ export const theme = {
 				typeColor2: "#E5BE5A",
 				typeColor3: "#9DC865",
 				typeColor4: "#5AAEDE",
+				colorLogo: "#9F2525"
 		},
 		fonts: {
 				primary: "#ffffff",
@@ -49,7 +50,7 @@ export const theme = {
 				red: "#E24A4A",
 		},
 		fontFamily: {
-				primary: '"Roboto"',
+				primary: '"Roboto", sans-serif',
 				medium: "Roboto-Medium",
 				bold: "Roboto-Bold",
 				secondaryBold: '"Sora-Bold"',

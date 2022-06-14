@@ -1,10 +1,10 @@
 import React from "react";
 import { Button } from './styled';
 
-const Component = () => {
+const Component = ({text, colorButton}) => {
 		return (
-				<Button>
-						{"Button"}
+				<Button colorButton={colorButton}>
+						{text}
 				</Button>
 		)
 }

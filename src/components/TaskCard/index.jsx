@@ -14,8 +14,7 @@ const Component = ({title = 'Do something', removeTask, index}) => {
 				if (!isDesabled) {
 						ref.current.focus();
 				}
-				console.log(isDesabled)
-		})
+		});
 
 		const stopEditFocus = () => {
 				setIsDesabled(true);
@@ -26,7 +25,7 @@ const Component = ({title = 'Do something', removeTask, index}) => {
 		}
 
 		const keyPressEnter = (e) => {
-				if(e.keyCode === 13){
+				if(e.keyCode === 13) {
 						alert( e.target.value);
 				}
 		}
@@ -61,7 +60,7 @@ const Component = ({title = 'Do something', removeTask, index}) => {
 						</div>
 						{showDeleteButton()}
 				</TaskCard>
-		)
+		);
 }
 
 export { Component as TaskCard };
