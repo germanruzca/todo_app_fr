@@ -40,7 +40,8 @@ export const theme = {
 				typeColor2: "#E5BE5A",
 				typeColor3: "#9DC865",
 				typeColor4: "#5AAEDE",
-				colorLogo: "#9F2525"
+				colorLogo: "#9F2525",
+				boardsCardColor: "#F8F8F8"
 		},
 		fonts: {
 				primary: "#ffffff",
