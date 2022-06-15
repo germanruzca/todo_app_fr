@@ -5,6 +5,7 @@ import { CustomInput } from './CustomInput';
 import { Login } from './Login';
 import { SignUp } from './SignUp';
 import { BoardCard } from './BoardCard'
+import { ListBoard } from './ListBoard'
 
 export {
 		Button,
@@ -14,4 +15,5 @@ export {
 		Login,
 		SignUp,
 		BoardCard,
+		ListBoard
 };
