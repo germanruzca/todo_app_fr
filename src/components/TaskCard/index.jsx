@@ -56,6 +56,7 @@ const Component = ({title = 'Do something', removeTask, index}) => {
 										onChange={handleInputTask}
 										onKeyDown={keyPressEnter}
 										isDesabled={isDesabled}
+										maxLength={25}
 								/>
 						</div>
 						{showDeleteButton()}

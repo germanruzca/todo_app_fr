@@ -13,12 +13,17 @@ export const BoardCard = styled.div`
 		box-sizing: border-box;
 `;
 
-export const BoardCardTitle = styled.p`
+export const BoardCardTitle = styled.input`
 		font-size: 20px;
 		color: ${props => props.theme.colors.black};
 		font-family: ${props => props.theme.fontFamily.primary};
 		font-weight: 700;
 		margin: 0;
+		outline: none;
+		border: 0 solid transparent;
+		background-color: transparent;
+		padding: 0;
+		width: 450px;
 `
 
 export const BoardCardTask = styled.p`
