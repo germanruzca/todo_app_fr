@@ -7,7 +7,9 @@ const Component = () => {
 		return (
 				<Header>
 						<ImageLogoContainer>
-								<Image src={Logo}/>
+							<a href={'/'}>
+									<Image src={Logo}/>
+							</a>
 						</ImageLogoContainer>
 				</Header>
 
