@@ -9,6 +9,7 @@ export {
 		FaStar as IconStar,
 		FaRegStar as IconStarEmpty,
 		FaArrowAltCircleRight as IconArrow,
+		FaArrowAltCircleLeft as IconArrowLeft,
 		FaEdit as IconEdit,
 		FaPlusCircle	as IconPlus,
 } from "react-icons/fa";

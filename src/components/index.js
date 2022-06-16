@@ -8,6 +8,7 @@ import { BoardCard } from './BoardCard'
 import { ListBoard } from './ListBoard'
 import { HomeGreet} from './HomeGreet';
 import { Header } from './Header';
+import { TitleBoard} from './TitleBoard';
 
 export {
 		Button,
@@ -20,4 +21,5 @@ export {
 		ListBoard,
 		HomeGreet,
 		Header,
+		TitleBoard,
 };
