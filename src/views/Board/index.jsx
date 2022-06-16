@@ -1,6 +1,6 @@
 import React from 'react'
 import { ListCard, Header, TitleBoard  } from '../../components';
-import { Content, TwoColumnsLayout, LayoutBoardView, LayoutBoards } from '../../components/Layout';
+import { LayoutBoardView, LayoutBoards } from '../../components/Layout';
 
 const Board = () => {
 		return (
