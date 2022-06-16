@@ -7,7 +7,7 @@ import { SignUp } from './SignUp';
 import { BoardCard } from './BoardCard'
 import { ListBoard } from './ListBoard'
 import { HomeGreet} from './HomeGreet';
-import { Header } from './Header'
+import { Header } from './Header';
 
 export {
 		Button,

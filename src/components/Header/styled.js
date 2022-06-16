@@ -2,16 +2,16 @@ import styled from 'styled-components'
 
 export const Header = styled.div`
 		width: 100%;
-		height: 100px;
+		height: fit-content;
 		background-color: transparent;
-		border: 1px solid black;
 		display: flex;
 		justify-content: center ;
+		margin-bottom: 80px;
 `;
 
 export const ImageLogoContainer = styled.div`
-		width: 200px;
-		height: 100px;
+		width: 160px;
+		height: 50px;
 `;
 
 export const Image = styled.img`

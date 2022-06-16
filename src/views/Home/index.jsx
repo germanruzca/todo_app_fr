@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListBoard} from '../../components';
+import { ListBoard, HomeGreet, Header} from '../../components';
 import { Content } from '../../components/Layout'
 import peope from '../../assets/people.png'
 
@@ -7,8 +7,8 @@ const Home = () => {
 
 		return (
 				<Content>
-						<h1>Weolcome back German</h1>
-						<img src={peope}/>
+						<Header/>
+						<HomeGreet/>
 						<ListBoard/>
 				</Content>
 		)

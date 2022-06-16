@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const HomeGreet = styled.div`
-		width: 518px;
-		height: 700px;
-		border: 1px solid black;
+		width: 418px;
+		height: 600px;
 		box-sizing: border-box;
 `;
 
@@ -16,7 +15,7 @@ export const Greeting = styled.h1`
 
 export const ImageContainer = styled.div`
 		width: fit-content;
-		height: 630px;
+		height: 450px;
 `;
 
 export const Image = styled.img`

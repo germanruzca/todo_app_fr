@@ -5,6 +5,7 @@ export const ListBoard = styled.div`
 		display: flex;
 		flex-direction: column;
 		width: 650px;
+		align-self: flex-start;
 `;
 
 export const ListBoardContainer = styled.div`

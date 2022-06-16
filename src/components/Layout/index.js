@@ -13,7 +13,7 @@ export const Content = styled.div`
   flex-wrap: wrap;
   gap: 16px;
   width: 100%;
-  margin: 32px 0 80px 0px;
+  margin: 30px 0 0 0;
 `;
 
 export const TwoColumnsLayout = styled.div`
