@@ -6,6 +6,9 @@ import { Login } from './Login';
 import { SignUp } from './SignUp';
 import { BoardCard } from './BoardCard'
 import { ListBoard } from './ListBoard'
+import { HomeGreet} from './HomeGreet';
+import { Header } from './Header';
+import { TitleBoard} from './TitleBoard';
 
 export {
 		Button,
@@ -15,5 +18,8 @@ export {
 		Login,
 		SignUp,
 		BoardCard,
-		ListBoard
+		ListBoard,
+		HomeGreet,
+		Header,
+		TitleBoard,
 };

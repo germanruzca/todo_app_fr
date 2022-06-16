@@ -6,16 +6,13 @@ import GlobalStyle from "../style/Global";
 
 import logo from '../assets/logo.png'
 
-import { Button } from "../components";
-
+import { MainRouter } from '../views/'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
 		    <GlobalStyle/>
-		    <div>
-								<img src={logo} width={1000} height={500}/>
-		    </div>
+		    <MainRouter/>
     </ThemeProvider>
   );
 }
