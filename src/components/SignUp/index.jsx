@@ -24,7 +24,7 @@ const Component = () => {
 						<ButtonCotainer>
 								<Button text={'SIGN UP'} />
 						</ButtonCotainer>
-						<LoginOptions>Already an account? <a href={'/'}>LOG IN</a></LoginOptions>
+						<LoginOptions>Already an account? <a href={'/signin'}>LOG IN</a></LoginOptions>
 				</SignUp>
 		);
 }

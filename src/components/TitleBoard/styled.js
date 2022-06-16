@@ -2,13 +2,12 @@ import styled from 'styled-components';
 
 export const TitleBoard = styled.div`
 		display: flex;
-		width: 100%;
 		height: fit-content;
 		align-items: center;
-		margin: 0 155px;
-		
 		> a {
-				font-size: 25px;
+				font-size: 30px;
+				width: 30px;
+				height: 30px;
 		}
 `;
 
