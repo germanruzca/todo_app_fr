@@ -9,15 +9,20 @@ export const ListBoard = styled.div`
 `;
 
 export const ListBoardContainer = styled.div`
-  width: 100%;
-  height: fit-content;
+  width: calc(100% + 20px);
+  max-height: 550px;
+		overflow: scroll;
   border-radius: 10px;
   background-color: ${props => props.theme.colors.white};
   border: 5px solid ${props => props.theme.colors.gray};
   padding: 20px;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		 > div {
+				 margin-bottom: 10px;
+		 }
 `;
 
 export const ListBoardHeader = styled.div`

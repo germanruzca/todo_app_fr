@@ -5,7 +5,7 @@ import { IconEdit, IconPlus } from '../../lib/icons';
 const Component = (props) => {
 		const [isDesabled, setIsDesabled] = useState(true);
 		const ref = useRef(null);
-		const { nameBoard, numberOfTasks } = props;
+		const { nameBoard, numberOfTasks, idBoard, numberOfTasksByBoard } = props;
 
 		const changeDesable = () => {
 				setIsDesabled(!isDesabled);
@@ -44,19 +44,21 @@ const Component = (props) => {
 
 		return (
 				<BoardCard>
-						<BoardCardInfo>
-								<BoardCardTitle
-										ref={ref}
-										defaultValue={nameBoard}
-										disabled={isDesabled}
-										onBlur={stopEditFocus}
-										onChange={handleInputTask}
-										onKeyDown={keyPressEnter}
-										isDesabled={isDesabled}
-										maxLength={30}
-								/>
-								<BoardCardTask>Tasks: {numberOfTasks}</BoardCardTask>
-						</BoardCardInfo>
+						<a href={`/board/${idBoard}`}>
+								<BoardCardInfo>
+												<BoardCardTitle
+														ref={ref}
+														defaultValue={nameBoard}
+														disabled={isDesabled}
+														onBlur={stopEditFocus}
+														onChange={handleInputTask}
+														onKeyDown={keyPressEnter}
+														isDesabled={isDesabled}
+														maxLength={30}
+												/>
+										<BoardCardTask>Tasks: {numberOfTasksByBoard}</BoardCardTask>
+								</BoardCardInfo>
+						</a>
 						{showIcons()}
 				</BoardCard>
 		)

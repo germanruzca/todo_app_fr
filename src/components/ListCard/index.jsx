@@ -1,17 +1,33 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ListCard, ListCardAdd, ListCardTitle, ListCardHeader, TaskCards} from './styled';
 import { IconPlus} from '../../lib/icons';
 import { TaskCard } from '../TaskCard';
 
-const Component = ({colorList, numberList, titleList}) => {
-		const [numberOfTasks, setNumberOfTasks] = useState(numberList);
+const Component = ({colorList, numberList, titleList, tasks = [{id: 1, title: 'hola', boardId: 1}]}) => {
+		const [tasksBoard, setTasksBoard] = useState(tasks);
+		console.log(tasks.length)
+
 
 		const addTask = () => {
-				setNumberOfTasks([...numberOfTasks, 'New task']);
+				setTasksBoard([...tasksBoard, {title: 'New task', boardId: 1}]);
 		}
 
 		const removeItem = (index) => {
-				setNumberOfTasks(numberOfTasks.filter((task, taskIndex) => taskIndex !== index ));
+				setTasksBoard(tasksBoard.filter((task, taskIndex) => taskIndex !== index ));
+		}
+
+		const renderTasks = () => {
+				console.log(tasksBoard)
+				if (tasksBoard) {
+						return tasksBoard.map((task, index) => (
+								 <TaskCard
+										       title={task.title}
+										       key={`task-${index}`}
+										       removeTask={removeItem}
+										       index={index}
+								/>
+						));
+				}
 		}
 		return (
 			<ListCard colorList={colorList}>
@@ -23,16 +39,7 @@ const Component = ({colorList, numberList, titleList}) => {
 							</ListCardAdd>
 					</ListCardHeader>
 					<TaskCards>
-							{
-								numberOfTasks.map((cardTitle, index) => {
-										return <TaskCard
-												       title={cardTitle}
-												       key={`card-${index}`}
-												       removeTask={removeItem}
-												       index={index}
-										/>
-								})
-							}
+							{renderTasks()}
 					</TaskCards>
 			</ListCard>
 		);
