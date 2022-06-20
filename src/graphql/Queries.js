@@ -21,10 +21,11 @@ export const LOAD_BOARDS = gql`
 `;
 
 export const LOAD_TASKS = gql`
-	query {
+	query GetTasks($boardId: ID!){
 		  tasks(boardId: $boardId) {
 		    title,
-		    boardId
+		    boardId,
+		    status
 		  }
 	}
 `;

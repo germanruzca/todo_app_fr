@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {BoardCard, BoardCardInfo, BoardCardTask, BoardCardTitle, BoardCardIcons} from './styled';
 import { IconEdit, IconPlus } from '../../lib/icons';
+import { Link } from 'react-router-dom'
 
 const Component = (props) => {
 		const [isDesabled, setIsDesabled] = useState(true);
 		const ref = useRef(null);
-		const { nameBoard, numberOfTasks, idBoard, numberOfTasksByBoard } = props;
+		const { nameBoard, idBoard, numberOfTasksByBoard } = props;
 
 		const changeDesable = () => {
 				setIsDesabled(!isDesabled);
@@ -44,7 +45,10 @@ const Component = (props) => {
 
 		return (
 				<BoardCard>
-						<a href={`/board/${idBoard}`}>
+						<Link
+							to={`/board/${idBoard}`}
+							state={`${nameBoard}`}
+						>
 								<BoardCardInfo>
 												<BoardCardTitle
 														ref={ref}
@@ -58,7 +62,7 @@ const Component = (props) => {
 												/>
 										<BoardCardTask>Tasks: {numberOfTasksByBoard}</BoardCardTask>
 								</BoardCardInfo>
-						</a>
+						</Link>
 						{showIcons()}
 				</BoardCard>
 		)

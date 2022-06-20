@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const ListCard = styled.div`
-		width: 367px;
-		height: fit-content;
+		width: fit-content;
+		height: 500px;
 		background-color: #F8F8F8;
 		border: 5px solid ${props => props.colorList};
 		border-radius: 10px;
@@ -29,6 +29,7 @@ export const ListCardAdd = styled.div`
   font-family: 'Roboto', sans-serif;
 		color: #848484;
 		cursor: pointer;
+  user-select: none;
 		
 		svg {
 				margin: 0 5px;
@@ -38,8 +39,28 @@ export const ListCardAdd = styled.div`
 		}
 `;
 
+export const EmptyList = styled.div`
+		width: 302px;
+		display: flex;
+		justify-content: center;
+		height: 100px;
+		font-family: ${props => props.theme.fontFamily.primary};
+  user-select: none;
+		
+		h1 {
+				font-size: 20px;
+				margin: 0;
+				color: ${props => props.theme.colors.gray};
+		}
+`
+
 export const TaskCards = styled.div`
+		height: 90%;
+		overflow: scroll;
 			div {
 					margin: 15px 0;
 			}
+		::-webkit-scrollbar {
+				display: none;
+		}
 `;
