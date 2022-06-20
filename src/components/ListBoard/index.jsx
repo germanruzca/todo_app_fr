@@ -9,7 +9,7 @@ import {
 import { BoardCard} from '../BoardCard';
 import { IconPlus } from '../../lib/icons';
 
-const Component = () => {
+const Component = ({boards}) => {
 
 		const sendMessage = () => {
 				alert('Board created')
@@ -18,14 +18,24 @@ const Component = () => {
 		return (
 			<ListBoard>
 					<ListBoardHeader>
-							<ListBoardTitle>Your boards</ListBoardTitle>
+							<ListBoardTitle>Your boards {boards.length}</ListBoardTitle>
 							<ListBoardAdd onClick={sendMessage}>
 									<IconPlus/>
 									<p>Create board</p>
 							</ListBoardAdd>
 					</ListBoardHeader>
 					<ListBoardContainer>
-							<BoardCard	numberOfTasks={10} nameBoard={'Home'}/>
+							{
+									boards.map((board, index) => {
+												return <BoardCard
+														       numberOfTasks={10}
+														       nameBoard={board.name}
+														       idBoard={board.id}
+														       key={`board-${index}`}
+														       numberOfTasksByBoard={board.tasks.length}
+												/>
+									})
+							}
 					</ListBoardContainer>
 			</ListBoard>
 		)

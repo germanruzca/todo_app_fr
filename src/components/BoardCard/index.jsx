@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {BoardCard, BoardCardInfo, BoardCardTask, BoardCardTitle, BoardCardIcons} from './styled';
 import { IconEdit, IconPlus } from '../../lib/icons';
+import { Link } from 'react-router-dom'
 
 const Component = (props) => {
 		const [isDesabled, setIsDesabled] = useState(true);
 		const ref = useRef(null);
-		const { nameBoard, numberOfTasks } = props;
+		const { nameBoard, idBoard, numberOfTasksByBoard } = props;
 
 		const changeDesable = () => {
 				setIsDesabled(!isDesabled);
@@ -44,19 +45,24 @@ const Component = (props) => {
 
 		return (
 				<BoardCard>
-						<BoardCardInfo>
-								<BoardCardTitle
-										ref={ref}
-										defaultValue={nameBoard}
-										disabled={isDesabled}
-										onBlur={stopEditFocus}
-										onChange={handleInputTask}
-										onKeyDown={keyPressEnter}
-										isDesabled={isDesabled}
-										maxLength={30}
-								/>
-								<BoardCardTask>Tasks: {numberOfTasks}</BoardCardTask>
-						</BoardCardInfo>
+						<Link
+							to={`/board/${idBoard}`}
+							state={`${nameBoard}`}
+						>
+								<BoardCardInfo>
+												<BoardCardTitle
+														ref={ref}
+														defaultValue={nameBoard}
+														disabled={isDesabled}
+														onBlur={stopEditFocus}
+														onChange={handleInputTask}
+														onKeyDown={keyPressEnter}
+														isDesabled={isDesabled}
+														maxLength={30}
+												/>
+										<BoardCardTask>Tasks: {numberOfTasksByBoard}</BoardCardTask>
+								</BoardCardInfo>
+						</Link>
 						{showIcons()}
 				</BoardCard>
 		)

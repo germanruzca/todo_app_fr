@@ -39,6 +39,9 @@ export const BoardCardInfo = styled.div`
 		> p {
 				margin-bottom: 5px;
 		}
+		> div {
+				cursor: pointer;
+		}
 `;
 
 export const BoardCardIcons	= styled.div`
