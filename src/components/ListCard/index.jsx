@@ -3,29 +3,33 @@ import {ListCard, ListCardAdd, ListCardTitle, ListCardHeader, TaskCards, EmptyLi
 import { IconPlus} from '../../lib/icons';
 import { TaskCard } from '../TaskCard';
 import { useMutation } from '@apollo/client';
-import {DESTROY_TASK, LOAD_TASKS} from '../../graphql/Queries';
+import {ADD_TASK, DESTROY_TASK, LOAD_TASKS} from '../../graphql/Queries';
 import _ from 'lodash'
 
-const Component = ({colorList, titleList, tasks, loading}) => {
+const Component = ({typeList, titleList, tasks, loading}) => {
 		const [ tasksToUse, setTasksToUse ] = useState([]);
-		const [force, setForce] = useState(null)
 		const [removeTask, { data, loadingDestoy, error }] = useMutation(DESTROY_TASK, {
-				refetchQueries: [
-						{ query: LOAD_TASKS},
-																						'GetTasks'
-				]
+				refetchQueries: [ { query: LOAD_TASKS}, 'GetTasks' ]
 		});
+
+		const [addNewTask, {dataNewTask, loadingNewTask, errorNewTask}] = useMutation(ADD_TASK, {
+				refetchQueries: [ { query: LOAD_TASKS},  'GetTasks'  ]
+		});
+
+		const colorsToList = ['#D89D05', '#16A1BF', '#669309'];
 
 		useEffect(() => {
 				setTasksToUse(tasks)
 		}, [tasks])
 
 		const addTask = () => {
-				setTasksToUse([...tasksToUse, { title: "Nueva task", boardId: 1}]);
+				setTasksToUse([...tasksToUse, { title: "", boardId: typeList}]);
 		}
 
 		const removeItem = (id) => {
-				removeTask({ variables: {taskId:id}});
+				console.log(id);
+				setTasksToUse(tasksToUse.splice(0, -1))
+				removeTask({ variables: {taskId:id}}  );
 		}
 
 		const renderTasks = () => {
@@ -37,13 +41,18 @@ const Component = ({colorList, titleList, tasks, loading}) => {
 										       key={`task-${index}`}
 										       removeTask={removeItem}
 										       index={index}
+										       deseable={task.title !== ""}
+										       setTasksToUse={setTasksToUse}
+										       tasksToUse={tasksToUse}
+										       addNewTask={addNewTask}
+										       typeOfList={typeList}
 								/>
 						));
 				}
 				return <EmptyList><h1>No tasks</h1></EmptyList>
 		}
 		return (
-			<ListCard colorList={colorList}>
+			<ListCard colorList={colorsToList[typeList-1]}>
 					<ListCardHeader>
 							<ListCardTitle>{titleList}</ListCardTitle>
 							<ListCardAdd onClick={addTask} title={'Add new task to this list'}>

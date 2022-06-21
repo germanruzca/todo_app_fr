@@ -42,3 +42,24 @@ export const DESTROY_TASK = gql`
   }
 }
 `;
+
+export const ADD_TASK = gql`
+		mutation AddTask($title: String!, $body: String!, $status: Int!, $boardId: Int!) {
+  createTask(input: {
+    title: $title,
+    body: $body,
+    status: $status,
+    boardId: $boardId
+  }) {
+    success,
+    task {
+      id,
+      title,
+      body
+      status,
+      boardId
+    },
+    errors
+  }
+}
+`;

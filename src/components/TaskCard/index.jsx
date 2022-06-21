@@ -2,10 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { TaskCard, TaskCardInput, TaskCardIcons, DeleteTask, EditTask } from './styled';
 import { IconEdit, IconPlus} from '../../lib/icons';
 
-const Component = ({title = 'Do something', removeTask, index, taskId}) => {
-		const [isDesabled, setIsDesabled] = useState(true);
+const Component = ({title, removeTask, taskId, deseable, setTasksToUse, tasksToUse, addNewTask, typeOfList}) => {
+		const [isDesabled, setIsDesabled] = useState(deseable);
 		const ref = useRef(null);
-		console.log(taskId);
 
 		const changeDesable = () => {
 				setIsDesabled(!isDesabled);
@@ -17,7 +16,10 @@ const Component = ({title = 'Do something', removeTask, index, taskId}) => {
 				}
 		});
 
-		const stopEditFocus = () => {
+		const stopEditFocus = (toDelete) => {
+				if (toDelete) {
+						setTasksToUse(tasksToUse.slice(0, -1))
+				}
 				setIsDesabled(true);
 		}
 
@@ -27,11 +29,15 @@ const Component = ({title = 'Do something', removeTask, index, taskId}) => {
 
 		const keyPressEnter = (e) => {
 				if(e.keyCode === 13) {
-						alert( e.target.value);
+						if(e.target.value === '')
+								return stopEditFocus(true);
+
+						addNewTask({variables: {title: e.target.value, body: 'ejemplo de body', status: typeOfList, boardId: 45}})
+						stopEditFocus(false);
 				}
 		}
 
-		function showDeleteButton () {
+		function showIcons () {
 				if (isDesabled) {
 						return (
 								<TaskCardIcons>
@@ -60,7 +66,7 @@ const Component = ({title = 'Do something', removeTask, index, taskId}) => {
 										maxLength={25}
 								/>
 						</div>
-						{showDeleteButton()}
+						{showIcons()}
 				</TaskCard>
 		);
 }

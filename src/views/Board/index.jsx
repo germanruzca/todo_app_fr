@@ -23,9 +23,9 @@ const Board = () => {
 						<Header/>
 						<TitleBoard name={`${nameBoard}`}/>
 						<LayoutBoards>
-								<ListCard colorList={'#D89D05'} titleList={'To-Do'} tasks={tasks.filter(t => t.status === 1)} loading={loading}/>
-								<ListCard colorList={'#16A1BF'} titleList={'In Progress'} tasks={tasks.filter(t => t.status === 2)} loading={loading}/>
-								<ListCard colorList={'#669309'} titleList={'Done'} tasks={tasks.filter(t => t.status === 3)} loading={loading}/>
+								<ListCard typeList={1} titleList={'To-Do'} tasks={tasks.filter(t => t.status === 1)} loading={loading}/>
+								<ListCard typeList={2} titleList={'In Progress'} tasks={tasks.filter(t => t.status === 2)} loading={loading}/>
+								<ListCard typeList={3} titleList={'Done'} tasks={tasks.filter(t => t.status === 3)} loading={loading}/>
 						</LayoutBoards>
 				</LayoutBoardView>
 		)
