@@ -63,3 +63,22 @@ export const ADD_TASK = gql`
   }
 }
 `;
+
+export const UPDATE_TASK = gql`
+	mutation UpdateTask($id: ID!, $title: String!, $status: Int!){
+  updateTask(input: {
+    id: $id,
+    title: $title,
+    status: $status
+  }) {
+    success,
+    task {
+      title,
+      body,
+      status,
+      boardId
+    },
+    errors
+  }
+}
+`;

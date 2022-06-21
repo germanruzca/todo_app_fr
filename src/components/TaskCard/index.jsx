@@ -1,13 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { TaskCard, TaskCardInput, TaskCardIcons, DeleteTask, EditTask } from './styled';
 import { IconEdit, IconPlus} from '../../lib/icons';
+import {random} from 'lodash';
 
-const Component = ({title, removeTask, taskId, deseable, setTasksToUse, tasksToUse, addNewTask, typeOfList}) => {
+const Component = ({title, removeTask, taskId, deseable, setTasksToUse, tasksToUse, addNewTask, typeOfList, updateTask}) => {
 		const [isDesabled, setIsDesabled] = useState(deseable);
+		const [isReadyToUpdate, setIsReadyToUpdate] = useState(false);
 		const ref = useRef(null);
 
 		const changeDesable = () => {
-				setIsDesabled(!isDesabled);
+				setIsDesabled(false);
+				setIsReadyToUpdate(true)
 		}
 
 		useEffect(() => {
@@ -16,11 +19,11 @@ const Component = ({title, removeTask, taskId, deseable, setTasksToUse, tasksToU
 				}
 		});
 
-		const stopEditFocus = (toDelete) => {
-				if (toDelete) {
-						setTasksToUse(tasksToUse.slice(0, -1))
-				}
-				setIsDesabled(true);
+		const stopEditFocus = (e) => {
+						if(e.target.value === '') {
+								setTasksToUse(tasksToUse.slice(0, -1))
+						}
+						setIsDesabled(true);
 		}
 
 		const handleInputTask = (event) => {
@@ -30,10 +33,15 @@ const Component = ({title, removeTask, taskId, deseable, setTasksToUse, tasksToU
 		const keyPressEnter = (e) => {
 				if(e.keyCode === 13) {
 						if(e.target.value === '')
-								return stopEditFocus(true);
+									return stopEditFocus(e)
 
-						addNewTask({variables: {title: e.target.value, body: 'ejemplo de body', status: typeOfList, boardId: 45}})
-						stopEditFocus(false);
+						if(isReadyToUpdate === false) {
+								addNewTask({variables: {title: e.target.value, body: 'ejemplo de body', status: typeOfList, boardId: 45}})
+						} else {
+								updateTask({variables: {id: taskId, title: e.target.value, status: random(1, 3, false)}})
+								setIsDesabled(true);
+						}
+						stopEditFocus();
 				}
 		}
 

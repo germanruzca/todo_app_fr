@@ -3,7 +3,7 @@ import {ListCard, ListCardAdd, ListCardTitle, ListCardHeader, TaskCards, EmptyLi
 import { IconPlus} from '../../lib/icons';
 import { TaskCard } from '../TaskCard';
 import { useMutation } from '@apollo/client';
-import {ADD_TASK, DESTROY_TASK, LOAD_TASKS} from '../../graphql/Queries';
+import {ADD_TASK, DESTROY_TASK, LOAD_TASKS, UPDATE_TASK} from '../../graphql/Queries';
 import _ from 'lodash'
 
 const Component = ({typeList, titleList, tasks, loading}) => {
@@ -15,6 +15,10 @@ const Component = ({typeList, titleList, tasks, loading}) => {
 		const [addNewTask, {dataNewTask, loadingNewTask, errorNewTask}] = useMutation(ADD_TASK, {
 				refetchQueries: [ { query: LOAD_TASKS},  'GetTasks'  ]
 		});
+
+		const [updateTask, {dataUpdatedTask, loadingUpdatedTask, errorUpdatedTask}] = useMutation(UPDATE_TASK, {
+				refetchQueries: [ { query: LOAD_TASKS}, 'GetTasks']
+		})
 
 		const colorsToList = ['#D89D05', '#16A1BF', '#669309'];
 
@@ -45,6 +49,7 @@ const Component = ({typeList, titleList, tasks, loading}) => {
 										       setTasksToUse={setTasksToUse}
 										       tasksToUse={tasksToUse}
 										       addNewTask={addNewTask}
+										       updateTask={updateTask}
 										       typeOfList={typeList}
 								/>
 						));
