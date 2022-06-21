@@ -6,13 +6,12 @@ import {useQuery} from '@apollo/client';
 import { useParams, useLocation } from 'react-router-dom';
 
 const Board = () => {
-
 		let boardId = useParams();
 		const [tasks, setTasks] = useState([])
 		const navi = useLocation();
-		console.log(navi.state);
 		const nameBoard = navi.state
 		const { error, loading, data } = useQuery(LOAD_TASKS, { variables: { boardId: boardId.id }});
+
 		useEffect(() => {
 				if (data) {
 						setTasks(data.tasks)

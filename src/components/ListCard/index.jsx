@@ -2,10 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {ListCard, ListCardAdd, ListCardTitle, ListCardHeader, TaskCards, EmptyList} from './styled';
 import { IconPlus} from '../../lib/icons';
 import { TaskCard } from '../TaskCard';
+import { useMutation } from '@apollo/client';
+import {DESTROY_TASK, LOAD_TASKS} from '../../graphql/Queries';
 import _ from 'lodash'
 
 const Component = ({colorList, titleList, tasks, loading}) => {
 		const [ tasksToUse, setTasksToUse ] = useState([]);
+		const [force, setForce] = useState(null)
+		const [removeTask, { data, loadingDestoy, error }] = useMutation(DESTROY_TASK, {
+				refetchQueries: [
+						{ query: LOAD_TASKS},
+																						'GetTasks'
+				]
+		});
 
 		useEffect(() => {
 				setTasksToUse(tasks)
@@ -15,8 +24,8 @@ const Component = ({colorList, titleList, tasks, loading}) => {
 				setTasksToUse([...tasksToUse, { title: "Nueva task", boardId: 1}]);
 		}
 
-		const removeItem = (index) => {
-				setTasksToUse(tasksToUse.filter((task, taskIndex) => taskIndex !== index ))
+		const removeItem = (id) => {
+				removeTask({ variables: {taskId:id}});
 		}
 
 		const renderTasks = () => {
@@ -24,6 +33,7 @@ const Component = ({colorList, titleList, tasks, loading}) => {
 						return tasksToUse.map((task, index) => (
 								 <TaskCard
 										       title={task.title}
+										       taskId={task.id}
 										       key={`task-${index}`}
 										       removeTask={removeItem}
 										       index={index}

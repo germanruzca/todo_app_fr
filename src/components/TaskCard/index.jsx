@@ -2,9 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { TaskCard, TaskCardInput, TaskCardIcons, DeleteTask, EditTask } from './styled';
 import { IconEdit, IconPlus} from '../../lib/icons';
 
-const Component = ({title = 'Do something', removeTask, index}) => {
+const Component = ({title = 'Do something', removeTask, index, taskId}) => {
 		const [isDesabled, setIsDesabled] = useState(true);
 		const ref = useRef(null);
+		console.log(taskId);
 
 		const changeDesable = () => {
 				setIsDesabled(!isDesabled);
@@ -34,7 +35,7 @@ const Component = ({title = 'Do something', removeTask, index}) => {
 				if (isDesabled) {
 						return (
 								<TaskCardIcons>
-										<DeleteTask onClick={() => removeTask(index)}>
+										<DeleteTask onClick={() => removeTask(taskId)}>
 												<IconPlus title={'Delete task'}/>
 										</DeleteTask>
 										<EditTask onClick={changeDesable} disabled={!isDesabled} >
