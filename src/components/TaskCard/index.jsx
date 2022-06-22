@@ -2,8 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { TaskCard, TaskCardInput, TaskCardIcons, DeleteTask, EditTask } from './styled';
 import { IconEdit, IconPlus} from '../../lib/icons';
 import {random} from 'lodash';
+import { Draggable } from 'react-beautiful-dnd';
 
-const Component = ({title, removeTask, taskId, deseable, setTasksToUse, tasksToUse, addNewTask, typeOfList, updateTask}) => {
+const Component = ({title, removeTask, taskId, deseable, setTasksToUse, tasksToUse, addNewTask, typeOfList, updateTask, index}) => {
 		const [isDesabled, setIsDesabled] = useState(deseable);
 		const [isReadyToUpdate, setIsReadyToUpdate] = useState(false);
 		const ref = useRef(null);
@@ -61,21 +62,30 @@ const Component = ({title, removeTask, taskId, deseable, setTasksToUse, tasksToU
 		}
 
 		return (
-				<TaskCard  isDesabled={isDesabled}>
-						<div>
-								<TaskCardInput
-										ref={ref}
-										defaultValue={title}
-										disabled={isDesabled}
-										onBlur={stopEditFocus}
-										onChange={handleInputTask}
-										onKeyDown={keyPressEnter}
+				<Draggable draggableId={`${taskId}`} index={index}>
+						{(provided) => (
+								<TaskCard
 										isDesabled={isDesabled}
-										maxLength={25}
-								/>
-						</div>
-						{showIcons()}
-				</TaskCard>
+										{...provided.draggableProps}
+										{...provided.dragHandleProps}
+										ref={provided.innerRef}
+								>
+										<div>
+												<TaskCardInput
+														ref={ref}
+														defaultValue={title}
+														disabled={isDesabled}
+														onBlur={stopEditFocus}
+														onChange={handleInputTask}
+														onKeyDown={keyPressEnter}
+														isDesabled={isDesabled}
+														maxLength={25}
+												/>
+										</div>
+										{showIcons()}
+								</TaskCard>
+						)}
+				</Draggable>
 		);
 }
 

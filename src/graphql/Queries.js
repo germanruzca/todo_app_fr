@@ -82,3 +82,14 @@ export const UPDATE_TASK = gql`
   }
 }
 `;
+
+export const UPDATE_STATUS_TASK = gql`
+	mutation UpdateTask($id: ID!, $status: Int!){
+  updateTask(input: {
+    id: $id,
+    status: $status
+  }) {
+    success
+   }
+}
+`;
