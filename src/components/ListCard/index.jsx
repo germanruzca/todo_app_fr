@@ -5,6 +5,7 @@ import { TaskCard } from '../TaskCard';
 import { useMutation } from '@apollo/client';
 import {ADD_TASK, DESTROY_TASK, LOAD_TASKS, UPDATE_TASK} from '../../graphql/Queries';
 import _ from 'lodash'
+import { Droppable } from 'react-beautiful-dnd'
 
 const Component = ({typeList, titleList, tasks, loading}) => {
 		const [ tasksToUse, setTasksToUse ] = useState([]);
@@ -65,9 +66,17 @@ const Component = ({typeList, titleList, tasks, loading}) => {
 									<p>Add Task</p>
 							</ListCardAdd>
 					</ListCardHeader>
-					<TaskCards>
-							{loading ? <p>Cargando</p> :  renderTasks()}
-					</TaskCards>
+					<Droppable droppableId={`${typeList}`}>
+							{(provided) => (
+									<TaskCards
+											ref={provided.innerRef}
+											{...provided.droppableProps}
+									>
+											{loading ? <p>Cargando</p> :  renderTasks()}
+											{provided.placeholder}
+									</TaskCards>
+							)}
+					</Droppable>
 			</ListCard>
 		);
 }
